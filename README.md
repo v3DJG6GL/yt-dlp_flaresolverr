@@ -13,7 +13,7 @@ This setup integrates **FlareSolverr** with **yt-dlp** using **mitmproxy**. It u
 ### 1. Download the Repository
 Clone the repository to your local machine and navigate into the directory:
 
-    git clone https://github.com/v3DJG6GL/yt-dlp_flaresolverr.git
+    git clone https://github.com/v3DJG6GL/yt-dlp_flaresolverr.git &&
     cd yt-dlp_flaresolverr
 
 ### 2. Start the Proxy Stack
