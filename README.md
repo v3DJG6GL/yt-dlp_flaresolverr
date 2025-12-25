@@ -1,8 +1,8 @@
 _NOTE: This setup was made with the help of AI_
 
-# yt-dlp FlareSolverr Proxy (Docker)
+# yt-dlp FlareSolverr Proxy
 
-This setup integrates **FlareSolverr** with **yt-dlp** using **mitmproxy**. Instead of a direct plugin, it uses a proxy server that transparently handles Cloudflare challenges (403/503 errors) by intercepting requests and solving them on the fly.
+This setup integrates **FlareSolverr** with **yt-dlp** using **mitmproxy**. It uses a proxy server that handles Cloudflare challenges by intercepting requests and solving them on the fly.
 
 ## Files
 *   `docker-compose.yml`: Orchestrates the `flaresolverr` and `mitmproxy` services using host networking.
@@ -10,13 +10,19 @@ This setup integrates **FlareSolverr** with **yt-dlp** using **mitmproxy**. Inst
 
 ## Usage
 
-### 1. Start the Proxy Stack
-Ensure both files are in the same directory, then start the services:
+### 1. Download the Repository
+Clone the repository to your local machine and navigate into the directory:
+
+    git clone https://github.com/v3DJG6GL/yt-dlp_flaresolverr.git
+    cd yt-dlp_flaresolverr
+
+### 2. Start the Proxy Stack
+Start the services using Docker Compose:
 
     docker-compose up -d
 
-### 2. Monitor Status & Logs
-It is highly recommended to open a separate terminal window to monitor the logs. This allows you to see when `mitmproxy` detects a block and when `flaresolverr` successfully solves it.
+### 3. Monitor Status & Logs
+If you encounter issues or want to watch the solving process (to see when `mitmproxy` detects a block and `flaresolverr` solves it), you can view the container logs:
 
     # (Optional) Verify the project is running
     docker compose ls
@@ -24,12 +30,12 @@ It is highly recommended to open a separate terminal window to monitor the logs.
     # Stream logs to see the "Block detected" and "Solved!" messages
     docker compose logs -f
 
-### 3. Run yt-dlp
+### 4. Run yt-dlp
 Direct `yt-dlp` to use the local proxy running on port 8192.
 
     yt-dlp --proxy http://127.0.0.1:8192 --no-check-certificate <VIDEO_URL>
 
-### 3. Verification
+### 5. Verification
 If a site is protected by Cloudflare:
 1.  `yt-dlp` makes a request.
 2.  `mitmproxy` receives a 403/503.
@@ -37,5 +43,5 @@ If a site is protected by Cloudflare:
 4.  Once solved (`✅ Solved!`), `yt-dlp` receives the correct content and begins downloading.
 
 ## Configuration Details
-*   **Network**: The setup uses `network_mode: host` (Linux only) to simplify communication between containers and localhost.
+*   **Network**: The setup uses `network_mode: host` to simplify communication between containers and localhost.
 *   **Dependencies**: The `mitmproxy` container installs `requests` at runtime to communicate with the FlareSolverr API.
