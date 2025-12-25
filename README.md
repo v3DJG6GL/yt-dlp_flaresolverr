@@ -46,8 +46,8 @@ If a site is protected by Cloudflare:
 *   **Network**: The setup uses `network_mode: host` to simplify communication between containers and localhost.
 *   **Dependencies**: The `mitmproxy` container installs `requests` at runtime to communicate with the FlareSolverr API.
 
-## Acknowledgements
-This project integrates and relies on the following open-source tools:
+## References
+This setup integrates the following projects:
 
 *   **[yt-dlp](https://github.com/yt-dlp/yt-dlp)**: A feature-rich command-line audio/video downloader.
 *   **[FlareSolverr](https://github.com/FlareSolverr/FlareSolverr)**: Proxy server to bypass Cloudflare protection.
