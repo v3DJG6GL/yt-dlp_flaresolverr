@@ -19,7 +19,7 @@ Clone the repository to your local machine and navigate into the directory:
 ### 2. Start the Proxy Stack
 Start the services using Docker Compose:
 
-    docker-compose up -d
+    docker compose up -d
 
 ### 3. Monitor Status & Logs
 If you encounter issues or want to watch the solving process (to see when `mitmproxy` detects a block and `flaresolverr` solves it), you can view the container logs:
